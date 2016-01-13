@@ -10,7 +10,6 @@
     'use strict';
     angular
         .module('angularApp', [
-            'ionic',
             'UtilApp',
             'ngAria',
             'ngCookies',
@@ -26,82 +25,19 @@
                 templateUrl: 'app/home/home.html',
                 controller: 'HomeController',
                 controllerAs: 'homeCtrl'
-                // resolve: {
-                //     auth: ["$q", "$state", "loginAuthenticationFactory", function($q, $state, loginAuthenticationFactory) {
-                //         var userId = loginAuthenticationFactory.getLoggedInUserId();
-
-                //         if (userId) {
-                //             return $q.when();
-                //         } else {
-                //             $state.go('login');
-                //             return $q.reject();
-                //         }
-                //     }]
-                // }
             })
             .state('login', {
                 url: '/login',
                 templateUrl: 'app/login/login.html',
                 controller: 'LoginController',
                 controllerAs: 'loginCtrl'
-                // resolve: {
-                //     auth: ["$q", "loginAuthenticationFactory", function($q, loginAuthenticationFactory) {
-                //         var userId = loginAuthenticationFactory.getLoggedInUserId();
-
-                //         if (userId) {
-                //             return $q.reject();
-                //         } else {
-                //             return $q.when();
-                //         }
-                //     }]
-                // }
             });
 
-
-            $urlRouterProvider.otherwise('/app');
-
-
-            // $routeProvider
-            //     .when('/home', {
-            //         templateUrl: 'app/home/home.html',
-            //         controller: 'HomeController',
-            //         controllerAs: 'homeCtrl'
-            //         // resolve: {
-            //         //     auth: ["$q", "loginAuthenticationFactory", function($q, loginAuthenticationFactory) {
-            //         //         var userId = loginAuthenticationFactory.getLoggedInUserId();
-
-            //         //         if (userId) {
-            //         //             return $q.resolve();
-            //         //         } else {
-            //         //             return $q.reject({
-            //         //                 authenticated: false
-            //         //             });
-            //         //         }
-            //         //     }]
-            //         // }
-            //     })
-                // .when('/login', {
-                //     templateUrl: 'app/login/login.html',
-                //     controller: 'LoginController',
-                //     controllerAs: 'loginCtrl',
-                //     resolve: {
-                //         auth: ["$q", "loginAuthenticationFactory", function($q, loginAuthenticationFactory) {
-                //             var userId = loginAuthenticationFactory.getLoggedInUserId();
-
-                //             if (userId) {
-                //                 return $q.reject({
-                //                     authenticated: true
-                //                 });
-                //             } else {
-                //                 return $q.resolve();
-                //             }
-                //         }]
-                //     }
-                // })
-                // .otherwise({
-                //     redirectTo: '/home'
-                // });
-            //$locationProvider.html5Mode(true);
+            //$urlRouterProvider.otherwise('/app');
+            $urlRouterProvider.otherwise(function($injector) {
+              var $state = $injector.get('$state');
+              return $state.go('app');
+            });
         }])
         .run(["$rootScope", "$state", "$ionicPlatform", "loginAuthenticationFactory", function($rootScope, $state, $ionicPlatform, loginAuthenticationFactory) {
             $ionicPlatform.ready(function() {
@@ -120,15 +56,27 @@
                 }
             });
 
-            $rootScope.$on("$stateChangeStart", function(event, toState, previous) {
-                if (toState.name !== 'login' && toState.loginReq) {
-                    var userId = loginAuthenticationFactory.getLoggedInUserId();
-                    if (!userId) {
-                        event.preventDefault();
-                        $state.go("login");
-                    }
+            $rootScope.$on("$stateChangeError", function(event, toState, previous) {
+                console.log("Error State Name: "+toState.name);
+            });
 
+            $rootScope.$on( '$stateChangeStart', function(e, toState  , toParams, fromState, fromParams) {
+
+                var userId = loginAuthenticationFactory.getLoggedInUserId();
+                var isLogin = toState.name === "login";
+
+                if(isLogin && userId){
+                    e.preventDefault(); // stop current execution
+                    $state.go('app'); // go to app
+                } else if(isLogin) {
+                     return; // no need to redirect
+                }
+
+                if(!userId) {
+                    e.preventDefault(); // stop current execution
+                    $state.go('login'); // go to login
                 }
             });
+
         }]);
 })();

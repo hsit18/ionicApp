@@ -3,15 +3,14 @@
  * @name UtilApp
  * @description
  * # UtilApp
- * Common util app to be use by other module app of the application 
+ * Common util app to be use by other module app of the application
  */
 
 'use strict';
 
 angular
     .module("UtilApp", [
-        'ngRoute',
-        'ngAnimate', 
+        'ionic',
         'toastr',
         'darthwade.dwLoading'
     ])
