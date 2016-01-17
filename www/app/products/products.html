@@ -1,0 +1,12 @@
+<ion-view view-title="Products for {{ProductsCtrl.category.name}}">
+    <ion-content>
+        <ion-list>
+            <a class="item" data-ng-repeat="product in ProductsCtrl.products" ui-sref="app.product-detail({prodid: product.id})">
+                {{product.name}}
+                <div class="item-icon-right">
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </a>
+        </ion-list>
+    </ion-content>
+</ion-view>

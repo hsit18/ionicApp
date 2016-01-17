@@ -3,7 +3,7 @@
  * @name UtilApp.constant:CONSTANTS
  * @description
  * # CONSTANTS
- * ECONSTANTS used for util App
+ * CONSTANTS used for util App
  */
 
 (function() {
@@ -11,7 +11,7 @@
 
     angular
         .module('UtilApp')
-        .constant('CONSTANTS', {
+        .constant('UTIL_CONSTANTS', {
             PRODUCTION_ENV: true,
             NETWORK_ERROR_MSG: {
                 STATUS_0: 'The server is unreachable.',

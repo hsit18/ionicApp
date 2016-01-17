@@ -13,13 +13,14 @@
         .module('angularApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['HomeService', 'StorageUtil', '$location'];
+    HomeController.$inject = ['HomeService', 'StorageUtil', '$location', "$state"];
 
-    function HomeController(HomeService, StorageUtil, $location) {
+    function HomeController(HomeService, StorageUtil, $location, $state) {
     	var vm = this;
         vm.loadHomePageData = function() {
             HomeService.getHomePageData().then(function(result) {
                 vm.content = result.content;
+                //$state.go('app.categories');
             }, function(error){
 
             });

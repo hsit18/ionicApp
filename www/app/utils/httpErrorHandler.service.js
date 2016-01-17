@@ -7,14 +7,14 @@
  */
 
 (function() {
-    
+
     'use strict';
 
     angular
         .module('UtilApp')
         .factory('HttpErrorHandlerService', HttpErrorHandlerService);
 
-    HttpErrorHandlerService.$inject = ['CONSTANTS', '$window', '$q', '$rootScope'];
+    HttpErrorHandlerService.$inject = ['UTIL_CONSTANTS', '$window', '$q', '$rootScope'];
 
     function HttpErrorHandlerService(CONSTANTS, $window, $q, $rootScope) {
         var HttpServiceErrorHandler = {
@@ -31,7 +31,7 @@
             responseError: function(rejection) {
                 console.log("Response Error:  ", rejection);
                 var errorMsg = '';
-                switch(rejection.status) {            
+                switch(rejection.status) {
                     case 0:
                         errorMsg = CONSTANTS.NETWORK_ERROR_MSG.STATUS_0;
                         break;
@@ -58,7 +58,7 @@
 
                     default:
                         errorMsg = CONSTANTS.NETWORK_ERROR_MSG.UNKNOWN;
-                        break;                    
+                        break;
                 }
                 $rootScope.addError({message:"Http Service Error", reason:errorMsg});
                 return $q.reject(rejection);

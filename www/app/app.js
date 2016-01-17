@@ -16,29 +16,6 @@
             'ngMessages',
             'ngTouch'
         ])
-        .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-
-            $stateProvider
-            .state('app', {
-                url: '/app',
-                loginReq: true,
-                templateUrl: 'app/home/home.html',
-                controller: 'HomeController',
-                controllerAs: 'homeCtrl'
-            })
-            .state('login', {
-                url: '/login',
-                templateUrl: 'app/login/login.html',
-                controller: 'LoginController',
-                controllerAs: 'loginCtrl'
-            });
-
-            //$urlRouterProvider.otherwise('/app');
-            $urlRouterProvider.otherwise(function($injector) {
-              var $state = $injector.get('$state');
-              return $state.go('app');
-            });
-        }])
         .run(["$rootScope", "$state", "$ionicPlatform", "loginAuthenticationFactory", function($rootScope, $state, $ionicPlatform, loginAuthenticationFactory) {
             $ionicPlatform.ready(function() {
                 if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -67,7 +44,7 @@
 
                 if(isLogin && userId){
                     e.preventDefault(); // stop current execution
-                    $state.go('app'); // go to app
+                    $state.go('app.categories'); // go to app
                 } else if(isLogin) {
                      return; // no need to redirect
                 }
