@@ -13,9 +13,9 @@
         .module('angularApp')
         .service('CategoriesService', CategoriesService);
 
-    CategoriesService.$inject = ['$http', '$q'];
+    CategoriesService.$inject = ['$http', '$q', 'CONSTANTS'];
 
-    function CategoriesService($http, $q) {
+    function CategoriesService($http, $q, CONSTANTS) {
 
         var service = {
             getCategoriesData: getCategoriesData
@@ -26,21 +26,15 @@
         function getCategoriesData() {
 
             var deferred = $q.defer();
-            var categories = [
-                    {
-                        id: 1,
-                        name: 'Category One'
-                    },
-                    {
-                        id: 2,
-                        name: 'Category Two'
-                    },
-                    {
-                        id: 3,
-                        name: 'Category Three'
-                    }
-                ];
-            deferred.resolve(categories);
+            $http.get( CONSTANTS.API_URL + 'api/getCategories').then(function(response) {
+                if(response && response.data) {
+                    deferred.resolve(response.data);
+                }
+            }, function(error) {
+                console.log(error);
+                deferred.reject(error);
+            });
+
             return deferred.promise;
         }
     }

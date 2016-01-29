@@ -13,9 +13,9 @@
         .module('angularApp')
         .service('LoginService', LoginService);
 
-    LoginService.$inject = ['$http', '$q'];
+    LoginService.$inject = ['$http', '$q', 'CONSTANTS'];
 
-    function LoginService($http, $q) {
+    function LoginService($http, $q, CONSTANTS) {
 
         var service = {
             validateUserLoginDetils: validateUserLoginDetils
@@ -27,10 +27,10 @@
             var deferred = $q.defer();
             var postData = {'userName': userName, 'password': password};
 
-            $http.post('http://localhost:8002/api/login', postData).then(function(response) {
+            $http.post(CONSTANTS.API_URL +'api/login', postData).then(function(response) {
                 if(response && response.data) {
                     deferred.resolve(response.data);
-                }                
+                }
             }, function(error) {
                 console.log(error);
                 deferred.reject(error);

@@ -12,6 +12,7 @@
     angular
         .module('angularApp')
         .constant('CONSTANTS', {
-            TEST_VAR: 'test const'
+            //API_URL: 'https://limitless-river-4314.herokuapp.com/',
+            API_URL: 'http://localhost:8080/'
         });
 })();
