@@ -24,8 +24,6 @@
 
         return service;
 
-
-
         function getProductsByCategoryId(categoryId) {
 
             var deferred = $q.defer();
