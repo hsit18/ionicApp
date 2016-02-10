@@ -20,9 +20,20 @@
             url: '/app',
             loginReq: true,
             abstract: true,
-            templateUrl: 'app/home/home.html',
-            controller: 'HomeController',
-            controllerAs: 'homeCtrl'
+            templateUrl: 'app/main/main.html',
+            controller: 'MainController',
+            controllerAs: 'mainCtrl'
+        })
+        .state('app.home', {
+            url: '/home',
+            loginReq: true,
+            views: {
+                'menuContent': {
+                    templateUrl: 'app/home/home.html',
+                    controller: 'HomeController',
+                    controllerAs: 'homeCtrl'
+                }
+            }
         })
         .state('login', {
             url: '/login',
@@ -64,7 +75,7 @@
         //$urlRouterProvider.otherwise('/app');
         $urlRouterProvider.otherwise(function($injector) {
           var $state = $injector.get('$state');
-          return $state.go('app.categories');
+          return $state.go('app.home');
         });
     }
 

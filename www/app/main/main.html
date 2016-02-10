@@ -1,0 +1,31 @@
+<ion-side-menus enable-menu-with-back-views="true">
+    <ion-side-menu-content drag-content="false">
+        <ion-nav-bar class="bar bar-dark">
+            <ion-nav-buttons side="left">
+                <button class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" class="dark-bg dark-border">
+        <header class="bar bar-header bar-dark">
+            <h1 class="title">Ecommerce Sample App</h1>
+        </header>
+        <ion-content class="has-header">
+            <ion-list>
+                <ion-item class="item item-dark item-icon-left" href="#/app/home" menu-close>
+                    <i class="icon ion-home"></i>
+                    Home
+                </ion-item>
+                <ion-item class="item item-dark item-icon-left" href="#/app/categories" menu-close>
+                    <i class="icon ion-navicon-round"></i>
+                    Categories
+                </ion-item>
+                <ion-item class="item item-dark item-icon-left" ng-click="mainCtrl.logoutUser()" menu-close>
+                    <i class="icon ion-log-out"></i>
+                    Log Out
+                </ion-item>                
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

@@ -44,7 +44,7 @@
 
                 if(isLogin && userId){
                     e.preventDefault(); // stop current execution
-                    $state.go('app.categories'); // go to app
+                    $state.go('app.home'); // go to app
                 } else if(isLogin) {
                      return; // no need to redirect
                 }

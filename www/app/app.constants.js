@@ -12,7 +12,7 @@
     angular
         .module('angularApp')
         .constant('CONSTANTS', {
-            API_URL: 'https://limitless-river-4314.herokuapp.com/',
+            API_URL: 'https://mean-category.herokuapp.com/',
             //API_URL: 'http://localhost:8080/'
         });
 })();
