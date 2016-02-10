@@ -10,11 +10,7 @@
     'use strict';
     angular
         .module('angularApp', [
-            'UtilApp',
-            'ngAria',
-            'ngCookies',
-            'ngMessages',
-            'ngTouch'
+            'UtilApp'
         ])
         .run(["$rootScope", "$state", "$ionicPlatform", "loginAuthenticationFactory", function($rootScope, $state, $ionicPlatform, loginAuthenticationFactory) {
             $ionicPlatform.ready(function() {
