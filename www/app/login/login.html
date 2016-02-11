@@ -1,5 +1,8 @@
 <form name="LoginForm" class="form-signin" novalidate="">
     <ion-view view-title="Please Sign-In">
+        <ion-header-bar align-title="center" class="bar-dark">
+            <h1 class="title">Please Sign-In</h1>
+        </ion-header-bar>
         <ion-content>
             <div class="list">
                 <label class="item item-input item-floating-label">
@@ -22,5 +25,10 @@
                 <button class="button button-block button-positive" data-ng-click="loginCtrl.submitForm(LoginForm)" type="submit">Sign-In</button>
             </div>
         </ion-content>
+        <ion-footer-bar align-title="center" class="bottom-banner bar-assertive">
+            <h1 class="title">
+                Copyright &copy; 2016
+            </h1>
+        </ion-footer-bar>
     </ion-view>
 </form>
