@@ -12,9 +12,13 @@
         .module('angularApp')
         .config(appConfig);
 
-    appConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+    appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider'];
 
-    function appConfig($stateProvider, $urlRouterProvider) {
+    function appConfig($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+
+        $ionicConfigProvider.scrolling.jsScrolling(true);
+
+
         $stateProvider
         .state('app', {
             url: '/app',
