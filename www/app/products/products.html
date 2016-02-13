@@ -1,12 +1,15 @@
 <ion-view view-title="Products List">
     <ion-content>
         <ion-list>
-            <a class="item" data-ng-repeat="product in ProductsCtrl.products" ui-sref="app.product-detail({prodid: product.id})">
-                {{product.name}}
-                <div class="item-icon-right">
-                    <i class="icon ion-ios-arrow-right"></i>
+            <ion-item data-ng-repeat="product in ProductsCtrl.products" ui-sref="app.product-detail({prodid: product.sem3_id})">
+                <div class="row">
+                    <div class="col item-text-wrap">{{product.name}}</div>
                 </div>
-            </a>
+                <div class="row">
+                    <div class="col col-40 item-text-wrap">{{product.model}}</div>
+                    <div class="col col-20 item-icon-right">{{product.price_currency}} {{product.price}}</div>
+                </div>
+            </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

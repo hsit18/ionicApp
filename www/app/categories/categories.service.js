@@ -23,12 +23,14 @@
 
         return service;
 
-        function getCategoriesData() {
+        function getCategoriesData(categoryId) {
 
             var deferred = $q.defer();
-            $http.get( CONSTANTS.API_URL + 'api/getCategories').then(function(response) {
+            $http.get( CONSTANTS.API_URL + 'api/ecom/getCategoriesById/'+categoryId).then(function(response) {
+                console.log(response.data);
                 if(response && response.data) {
-                    deferred.resolve(response.data);
+                    var responseObj = JSON.parse(response.data);
+                    deferred.resolve(responseObj.results);
                 }
             }, function(error) {
                 console.log(error);

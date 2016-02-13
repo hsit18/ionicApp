@@ -27,10 +27,12 @@
         function getProductsByCategoryId(categoryId) {
 
             var deferred = $q.defer();
-            $http.get( CONSTANTS.API_URL + 'api/getProductByCategoryId/'+categoryId).then(function(response) {
+            $http.get( CONSTANTS.API_URL + 'api/ecom/getProductsByCatId/'+categoryId).then(function(response) {
                 if(response && response.data) {
-                    var selectedProducts = $filter('filter')(response.data, {categoryId: Number(categoryId)});
-                    deferred.resolve(selectedProducts);
+                    var responseObj = JSON.parse(response.data);
+                    deferred.resolve(responseObj.results);
+                    // var selectedProducts = $filter('filter')(response.data, {categoryId: Number(categoryId)});
+                    // deferred.resolve(selectedProducts);
                 }
             }, function(error) {
                 console.log(error);
@@ -43,10 +45,12 @@
         function getProductDetailByProductId(productId) {
 
             var deferred = $q.defer();
-            $http.get( CONSTANTS.API_URL + 'api/getProductDetail/'+productId).then(function(response) {
+            $http.get( CONSTANTS.API_URL + 'api/ecom/getProductDetailById/'+productId).then(function(response) {
                 if(response && response.data) {
-                    var selectedProduct = $filter('filter')(response.data, {id: Number(productId)});
-                    deferred.resolve(selectedProduct);
+                    var responseObj = JSON.parse(response.data);
+                    deferred.resolve(responseObj.results);
+                    // var selectedProduct = $filter('filter')(response.data, {id: Number(productId)});
+                    // deferred.resolve(selectedProduct);
                 }
             }, function(error) {
                 console.log(error);

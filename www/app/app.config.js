@@ -46,7 +46,7 @@
             controllerAs: 'loginCtrl'
         })
         .state('app.categories', {
-            url: '/categories',
+            url: '/categories/:id',
             views: {
                 'menuContent': {
                     templateUrl: 'app/categories/categories.html',

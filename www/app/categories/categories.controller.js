@@ -13,18 +13,28 @@
         .module('angularApp')
         .controller('CategoriesController', CategoriesController);
 
-    CategoriesController.$inject = ['CategoriesService', 'StorageUtil', '$location', 'CONSTANTS'];
+    CategoriesController.$inject = ['CategoriesService', 'StorageUtil', '$location', 'CONSTANTS', '$stateParams'];
 
-    function CategoriesController(CategoriesService, StorageUtil, $location, CONSTANTS) {
-    	var vm = this;
+    function CategoriesController(CategoriesService, StorageUtil, $location, CONSTANTS, $stateParams) {
+
+        var vm = this;
+        vm.categoryId = ($stateParams.id) ? $stateParams.id : 1;
+
         vm.loadCategories = function() {
 
-            CategoriesService.getCategoriesData().then(function(result) {
+            CategoriesService.getCategoriesData(vm.categoryId).then(function(result) {
                 vm.categories = result;
             }, function(error){
 
             });
         }
+
+        vm.getMoreCategoriesOrProducts = function(id) {
+
+
+        }
+
+
 
         vm.loadCategories();
     }
