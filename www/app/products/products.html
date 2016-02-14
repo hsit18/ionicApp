@@ -3,6 +3,7 @@
         <ion-list>
             <ion-item data-ng-repeat="product in ProductsCtrl.products" ui-sref="app.product-detail({prodid: product.sem3_id})">
                 <div class="row">
+                    <div class="col col-25 item-thumbnail-left"><img src="img/3.jpg"></div>
                     <div class="col item-text-wrap">{{product.name}}</div>
                 </div>
                 <div class="row">
